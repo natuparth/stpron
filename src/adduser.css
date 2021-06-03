@@ -1,0 +1,129 @@
+.container{
+    height: 100%;
+    width: 50%;
+    margin: 0 auto;
+}
+.grid{
+    display: grid;
+ width: 100%;
+ grid-template-columns: 35% 65%;
+ grid-template-rows: repeat(5, 60px);
+ grid-gap: 20px;
+ grid-template-areas: 
+        "profile first"
+        "picture last"
+        "picture dob"
+        "uploadButton married"
+         "footer footer"  ;
+
+
+}
+.profilePic{
+    align-content: center;
+    grid-area: profile;
+    border: 2px solid red;
+
+}
+.picture{
+  text-align: center;
+  grid-area: picture;
+}
+.uploadButton{
+  text-align: center;
+  grid-area: uploadButton;
+}
+.footer{
+  text-align: center;
+  grid-area: footer;
+}
+.first{
+    grid-area: first;
+}
+.last{
+    grid-area: last;
+}
+.dob{
+    grid-area: dob;
+}
+.married{
+    grid-area: married;
+}
+.picture img{
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+}
+.form__group {
+    position: relative;
+    /* padding: 15px 0 0; */
+    margin-top: 10px;
+    width: 100%;
+  }
+  
+  .form__field {
+    font-family: inherit;
+    width: 80%;
+    border: 0;
+    border-bottom: 2px solid #9b9b9b;
+    outline: 0;
+    font-size: 1.3rem;
+    color:black;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+  }
+  .form__field::placeholder {
+    color: #9b9b9b;
+  }
+  .form__field:focus::placeholder{
+      color: transparent;
+  }
+  .form__field:placeholder-shown ~ .form__label {
+    /* font-size: 1.3rem;
+    cursor: text;
+    top: 20px; */
+     display: none;  
+}
+  
+  .form__label {
+    position: absolute;
+    top: -15px;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: #9b9b9b;
+  }
+  
+  .form__field:focus {
+    padding-bottom: 6px;
+    font-weight: 700;
+    border-width: 3px;
+    border-image: linear-gradient(to right, #11998e, #38ef7d);
+    border-image-slice: 1;
+  }
+  .form__field:focus ~ .form__label {
+    position: absolute;
+    top: -15px;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: #11998e;
+    font-weight: 700;
+  }
+  
+  /* reset input */
+  .form__field:required, .form__field:invalid {
+    box-shadow: none;
+  }
+   .uploadLable{
+     background-color: aqua;
+     background-color: aqua;
+     background: linear-gradient(top, #f9f9f9, #e3e3e3);
+     border: 1px solid #999;
+     border-radius: 3px;
+     padding: 5px 8px;
+     outline: none;
+     white-space: nowrap;
+   }
+
+  
