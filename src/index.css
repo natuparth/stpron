@@ -2,14 +2,14 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  margin: 2% 8%; 
-  height: 100vh;
+    sans-serif !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  margin: 2% 8% !important; 
+  height: 100vh !important;
   overflow: hidden;
-      background: linear-gradient(#b3b9d9,#fbebe4);
-      background-blend-mode: screen;
+  background: linear-gradient(#b3b9d9,#fbebe4) !important;
+  background-blend-mode: screen !important;
 }
 
 code {
