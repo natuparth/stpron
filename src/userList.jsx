@@ -8,8 +8,8 @@ const married = {
 }
 const headings = ['id', 'first', 'last', 'dob', 'married', 'profile']
 export function UserList(props){
-   const headingElement = headings.map(data => <div>{data}</div>)
-   headingElement.push(<div className="button"><button onClick={()=>props.onUserAdded({'id':12})}>Add User</button></div>)
+   const headingElement = headings.map(data => <div key={data}>{data}</div>)
+   headingElement.push(<div className="button"><button onClick={()=>props.onUserAdded()}>Add User</button></div>)
     // props.users.forEach(elem => {
     //     import(elem.picUrl).then(image => elem.picUrl = image)
     // })
@@ -24,7 +24,7 @@ export function UserList(props){
   <div>
     {
         props.users.map((user, index)=>{
-          return <div className="list listElement">
+          return <div className="list listElement" key={user.id}>
               <div>{index+1}</div>
               <div>{user.first}</div>
               <div>{user.last}</div>
@@ -33,6 +33,7 @@ export function UserList(props){
               
               </div>
               <div><img src={process.env.PUBLIC_URL + user.picUrl} width="100px" height="100px" /></div>
+              <div onClick={()=>props.editUser(user)}> Edit <i className="fa fa-edit fa-2x"></i></div>
           </div>
         })
     }
