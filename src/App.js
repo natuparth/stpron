@@ -1,6 +1,6 @@
 
 import './App.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { UserList } from './userList';
 import { AddUser } from './adduser';
 import { Modal , Button} from 'react-bootstrap';
@@ -41,7 +41,8 @@ function App() {
     }
     else{
       user.id=temp.length+1
-    temp.push(user)
+    temp.unshift(user)
+    
     }
    
     setHandler([...temp]);
@@ -73,7 +74,7 @@ function App() {
 function MyModal(props) {
   const [selectedFile, setSelectedFile] = useState();
 	const [isFilePicked, setIsFilePicked] = useState(false);
-  const {register,handleSubmit}=useForm()
+  const {register,setValue,handleSubmit}=useForm()
     const onSubmit = data =>{ 
         let user={
             id: props.userModal?props.userModal.id:btoa(Math.random()).substring(0, 12),
@@ -91,7 +92,15 @@ function MyModal(props) {
       setSelectedFile(event.target.files[0]);
       setIsFilePicked(true);
     };
-  return (
+    useEffect(()=>{
+    setValue('first', props.userModal.first !== ""?props.userModal.first:"")
+    setValue('last', props.userModal.last !== ""?props.userModal.last:"")
+    setValue('dob', props.userModal.dob !== ""?props.userModal.dob:"")
+    setValue('married', props.userModal.married !== ""?props.userModal.married:"")
+    setIsFilePicked(false);
+    },[props.userModal]
+    );
+    return (
     <Modal
       {...props}
       size="lg"
@@ -115,7 +124,7 @@ function MyModal(props) {
         <div className="grid">
            
              <div className="picture"> 
-             {props.userModal.picUrl && isFilePicked === false ?   <img src={props.userModal.picUrl} /> : ''}
+             {props.userModal.picUrl!=="" && isFilePicked === false ?   <img src={props.userModal.picUrl} /> : ''}
              {isFilePicked===true ?  <img src={'./assets/'+selectedFile.name} alt="Please upload a file from assets folder" /> : ''}
              {!isFilePicked===true && props.userModal.picUrl === "" ?  <i className="fa fa-upload fa-3x"></i> : ''}
              </div>
@@ -125,19 +134,19 @@ function MyModal(props) {
 <label className="uploadLable" htmlFor="img">Upload Profile</label>
             </div>
             <div className="first form__group">
-            <input type="input" {...register("first")} defaultValue={props.userModal != ''?props.userModal.first:""} className="form__field" placeholder="first" name="first" id='first' required />
+            <input type="input" {...register("first")} defaultValue="" className="form__field" placeholder="first" name="first" id='first' required />
                 <label htmlFor="first" className="form__label">First</label>
             </div>
             <div className="last form__group">
-            <input type="input" {...register("last")} defaultValue={props.userModal != ''?props.userModal.last:""} className="form__field" placeholder="last" name="last" id='last' required />
+            <input type="input" {...register("last")} defaultValue="" className="form__field" placeholder="last" name="last" id='last' required />
                 <label htmlFor="last" className="form__label">Last</label>
             </div>
             <div className="dob form__group">
-            <input type="date" {...register("dob")} defaultValue={props.userModal?props.userModal.dob:""} className="form__field"  name="dob" id='dob' required placeholder=""/>
+            <input type="date" {...register("dob")} defaultValue="" className="form__field"  name="dob" id='dob' required placeholder=""/>
                 <label htmlFor="dob" className="form__label">Date of Birth</label>
             </div>
             <div className="married form__group">
-            <select {...register("married")}  defaultValue={props.userModal?props.userModal.married:"No"} type="input" className="form__field" placeholder="married" name="married" id='married' required >
+            <select {...register("married")}  defaultValue="" type="input" className="form__field" placeholder="married" name="married" id='married' required >
                   <option value="Yes">Yes</option>
                   <option value="No">No</option>
                       </select>
